@@ -1,6 +1,8 @@
 import express from 'express';
 import url from 'url';
-import path from 'path';    
+import path from 'path';
+import http from 'http';
+import { Server } from 'socket.io';
 
 const app = express();
 const port = process.env.port || 3000;
@@ -8,10 +10,16 @@ const port = process.env.port || 3000;
 // Get the current path
 const currentPath = url.fileURLToPath(import.meta.url);
 const publicDirectory = path.join(currentPath, "../..", "public");
+app.use(express.static(publicDirectory)); //Pagina estatica -> Utiliza de forma estatica os arquivos selecionados.
 
-//Pagina estatica -> Utiliza de forma estatica os arquivos selecionados.
-app.use(express.static(publicDirectory));
+const serverHttp = http.createServer(app);
 
-app.listen(port, () => {
+serverHttp.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
+});
+
+const io = new Server(serverHttp);
+
+io.on('connection', () => {
+    console.log('Um cliente se conectou!');
 });

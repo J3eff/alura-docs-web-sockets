@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/J3eff/alura-docs-web-sockets#readme",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
