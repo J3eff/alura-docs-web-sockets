@@ -1,12 +1,14 @@
-const socket = io();
+import { emitirTextoEditor } from "./socket-front-document.js";
 
 const textEditor = document.getElementById('editor-texto');
 
 //Observa sempre que alguem soltar uma tecla no editor de texto
 textEditor.addEventListener('keyup', () => {
-    socket.emit('texto_editor', textEditor.value);
+    emitirTextoEditor(textEditor.value);
 });
 
-socket.on('texto_editor_cliente', (text) => {
-   textEditor.value = text;
-});
+function atualizarTextoEditor(texto) {
+    textEditor.value = texto;
+}
+
+export { atualizarTextoEditor };
