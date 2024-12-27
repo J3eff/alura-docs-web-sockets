@@ -8,6 +8,10 @@ function emitirTextoEditor(texto) {
 
 socket.on('texto_editor_cliente', (texto) => {
     atualizarTextoEditor(texto);
- });
+});
+
+socket.on("disconnect", (motivo) => {
+    console.log(`Servidor desconectado! Motivo: ${motivo}`);
+});
 
 export { emitirTextoEditor };
