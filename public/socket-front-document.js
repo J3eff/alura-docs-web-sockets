@@ -2,6 +2,10 @@ import { atualizarTextoEditor } from "./documento.js";
 
 const socket = io();
 
+function selecionarDocument(nomeDocumento) {
+    socket.emit('selecionar_documento', nomeDocumento)
+}
+
 function emitirTextoEditor(texto) {
     socket.emit('texto_editor', texto);
 }
@@ -14,4 +18,4 @@ socket.on("disconnect", (motivo) => {
     console.log(`Servidor desconectado! Motivo: ${motivo}`);
 });
 
-export { emitirTextoEditor };
+export { emitirTextoEditor, selecionarDocument };

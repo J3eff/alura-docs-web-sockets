@@ -7,6 +7,10 @@ io.on('connection', (socket) => {
     socket.on('texto_editor', (text) => {
         socket.broadcast.emit('texto_editor_cliente', text);
     });
+
+    socket.on('selecionar_documento', (nomeDocumento) => {
+        socket.join(nomeDocumento);
+    });
 });
 
 io.on("disconnect", (motivo) => {
