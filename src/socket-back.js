@@ -1,28 +1,15 @@
 import io from './server.js';
-
-const documentos = [
-    {
-        nome: "JavaScript",
-        texto: "texto de javascript"
-
-    },
-    {
-        nome: "Node",
-        texto: "texto de node"
-    },
-    {
-        nome: "Socket.io",
-        texto: "texto de socket.io"
-    }
-]
+import { documentosColecao } from './dbConnect.js';
 
 io.on('connection', (socket) => {
     console.log('Um cliente se conectou! ID: ' + socket.id);
 
-    socket.on('selecionar_documento', (nomeDocumento, devolverTexto) => {
+    socket.on('selecionar_documento', async (nomeDocumento, devolverTexto) => {
         socket.join(nomeDocumento); // Adiciona o cliente a uma sala especifica
 
-        const documento = encontrarDocumento(nomeDocumento);
+        const documento = await encontrarDocumento(nomeDocumento);
+        console.log(documento);
+
         if (documento) {
             devolverTexto(documento.texto);
         }
@@ -37,7 +24,7 @@ io.on('connection', (socket) => {
     });
 });
 
-function encontrarDocumento(nomeDocumento) {
-    return documentos.find(doc => doc.nome === nomeDocumento);
+function encontrarDocumento(nome) {
+    return documentosColecao.findOne({ nome });
 }
 
