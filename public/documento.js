@@ -14,7 +14,10 @@ selecionarDocument(nomeDocumento);
 
 //Observa sempre que alguem soltar uma tecla no editor de texto
 textEditor.addEventListener('keyup', () => {
-    emitirTextoEditor(textEditor.value);
+    emitirTextoEditor({
+        texto: textEditor.value,
+        nomeDocumento
+    });
 });
 
 function atualizarTextoEditor(texto) {

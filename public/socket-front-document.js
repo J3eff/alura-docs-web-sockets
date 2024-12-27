@@ -6,16 +6,13 @@ function selecionarDocument(nomeDocumento) {
     socket.emit('selecionar_documento', nomeDocumento)
 }
 
-function emitirTextoEditor(texto) {
-    socket.emit('texto_editor', texto);
+function emitirTextoEditor(dados) {
+    socket.emit('texto_editor', dados);
 }
 
 socket.on('texto_editor_cliente', (texto) => {
     atualizarTextoEditor(texto);
 });
 
-socket.on("disconnect", (motivo) => {
-    console.log(`Servidor desconectado! Motivo: ${motivo}`);
-});
 
 export { emitirTextoEditor, selecionarDocument };
