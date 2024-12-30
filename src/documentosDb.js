@@ -8,7 +8,7 @@ function obterDocuemtos() {
 function adicionarDocumento(nome) {
     const resultado = documentosColecao.insertOne({ nome, texto: "" });
 
-   return resultado;
+    return resultado;
 }
 
 function encontrarDocumento(nome) {
@@ -26,4 +26,9 @@ function atualizaDocumento(nome, texto) {
     return atualizacao;
 }
 
-export { encontrarDocumento, atualizaDocumento, obterDocuemtos, adicionarDocumento };
+function excluirDocumento(nome) {
+    const resultado = documentosColecao.deleteOne({ nome });
+    return resultado;
+}
+
+export { encontrarDocumento, atualizaDocumento, obterDocuemtos, adicionarDocumento, excluirDocumento };
