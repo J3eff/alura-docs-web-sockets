@@ -27,4 +27,11 @@ botaoExcluir.addEventListener('click', () => {
     emitirExcluirDocumento(nomeDocumento);
 })
 
-export { atualizarTextoEditor };
+function alertaERedirecionar(nome) {
+    if (nome === nomeDocumento) {
+        alert(`O documento ${nome} excluído`);
+        window.location.href = '/';
+    }
+}
+
+export { atualizarTextoEditor, alertaERedirecionar };
