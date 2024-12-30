@@ -16,4 +16,8 @@ socket.on("adicionar_documento_interface", (nomeDocumento) => {
     inserirLinkDocumento(nomeDocumento);
 })
 
+socket.on("documento_existente", (nome) => {
+    alert(`O documento ${nome} já existe!`);
+})
+
 export { emitirAdicionarDocumento };
