@@ -1,8 +1,14 @@
 import { documentosColecao } from './dbConnect.js';
 
 function obterDocuemtos() {
-    const documentos = documentosColecao.find().toArray();    
+    const documentos = documentosColecao.find().toArray();
     return documentos;
+}
+
+function adicionarDocumento(nome) {
+    const resultado = documentosColecao.insertOne({ nome, texto: "" });
+
+   return resultado;
 }
 
 function encontrarDocumento(nome) {
@@ -20,4 +26,4 @@ function atualizaDocumento(nome, texto) {
     return atualizacao;
 }
 
-export { encontrarDocumento, atualizaDocumento, obterDocuemtos };
+export { encontrarDocumento, atualizaDocumento, obterDocuemtos, adicionarDocumento };
